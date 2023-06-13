@@ -21,3 +21,16 @@ body {
     align-items: center;
     padding-top: 12px;
 }
+
+.quiz-answer:hover {
+    cursor: pointer;
+    background-color: rgba(39, 52, 92, 0.1);
+}
+
+.right {
+    background-color: rgba(57, 197, 166, 0.2);
+}
+
+.wrong {
+    background-color: rgba(239, 40, 40, 0.2);
+}
