@@ -34,3 +34,13 @@ body {
 .wrong {
     background-color: rgba(239, 40, 40, 0.2);
 }
+
+.button-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+button:hover {
+    cursor: pointer;
+}

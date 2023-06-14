@@ -24,10 +24,28 @@
   <div class="container">
 
     <div class="card quiz-card">
-      <img src="./img/quizimage.jpg" class="card-img-top" alt="riddle">
+      <img src="./img/quizimage.jpg" class="card-img-top" id="header-picture" alt="riddle">
 
-      <div class="card-body" id="endscreen" style="display: none">quiz beendet</div>
+      <div class="progress">
+        <div class="progress-bar" id="progress-bar" role="progressbar" style="width: 0%;">25%</div>
+      </div>
 
+      <div class="card-body" id="endscreen" style="display: none">
+        <div>quiz beendet
+        </div>
+
+
+        <div class="text-center"> Du hast <b id="amount-of-right-questions">xxx</b> Fragen von <b
+            id="amount-of-questions">UIUI</b> richtig
+          beantwortet!
+        </div>
+
+
+        <div class="button-row">
+          <button type="button" class="btn btn-secondary" onclick="resetGame()">Erneut spielen!</button>
+        </div>
+
+      </div>
       <div class="card-body" id="question-body">
         <h5 class="card-title" id="question-text">Frage</h5>
 
@@ -66,7 +84,6 @@
 
       </div>
     </div>
-  </div>
 </body>
 
 </html>

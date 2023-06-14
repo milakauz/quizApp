@@ -33,13 +33,13 @@ function answer(selection) {
     let selectedAnswerNumber = selection.slice(-1);             //um den letzten buchstaben der answer_ zu bekommen
     let idOfRightAnswer = `answer_${question['right_answer']}`;
     if (selectedAnswerNumber == question['right_answer']) {    // abgleich mit der richtigen antwort, die auch nur eine zahl ist (daher slice-1)
-        console.log('richtig!');
         document.getElementById(selection).parentNode.classList.add('right');
+        AUDIO_SUCCESS.play();
         rightQuestions++;
     } else {
-        console.log('falsch!');
         document.getElementById(selection).parentNode.classList.add('wrong');
         document.getElementById(idOfRightAnswer).parentNode.classList.add('right');
+        AUDIO_FAIL.play();
     }
     document.getElementById('next-btn').disabled = false;
 }
