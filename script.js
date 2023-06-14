@@ -5,33 +5,23 @@ function init() {
 
 function showQuestion() {
 
-    if (currentQuestion >= questions.length) {
-        // show end screen
+    if (gameIsOver()) {
         showEndScreen();
     } else {
-        // show questions
-
-        let percent = currentQuestion / questions.length;
-        percent = Math.round(percent * 100);
-
-        document.getElementById('progress-bar').innerHTML = `${percent}%`;
-        document.getElementById('progress-bar').style = `width: ${percent}%;`;
-
-        let question = questions[currentQuestion];
-
-        document.getElementById('position').innerHTML = currentQuestion + 1;
-        document.getElementById('question-text').innerHTML = question['question'];
-        document.getElementById('answer_1').innerHTML = question['answer_1'];
-        document.getElementById('answer_2').innerHTML = question['answer_2'];
-        document.getElementById('answer_3').innerHTML = question['answer_3'];
-        document.getElementById('answer_4').innerHTML = question['answer_4'];
+        updateProgressBar();
+        updateToNextQuestion();
     }
+}
+
+function gameIsOver() {
+    return currentQuestion >= questions.length;
 }
 
 function answer(selection) {
     let question = questions[currentQuestion];              	//um auf aktuelle frage zuzugreifen
     let selectedAnswerNumber = selection.slice(-1);             //um den letzten buchstaben der answer_ zu bekommen
     let idOfRightAnswer = `answer_${question['right_answer']}`;
+
     if (selectedAnswerNumber == question['right_answer']) {    // abgleich mit der richtigen antwort, die auch nur eine zahl ist (daher slice-1)
         document.getElementById(selection).parentNode.classList.add('right');
         AUDIO_SUCCESS.play();
@@ -51,6 +41,14 @@ function nextQuestion() {
     showQuestion();
 }
 
+function updateProgressBar() {
+    let percent = currentQuestion / questions.length;
+    percent = Math.round(percent * 100);
+
+    document.getElementById('progress-bar').innerHTML = `${percent}%`;
+    document.getElementById('progress-bar').style = `width: ${percent}%;`;
+}
+
 function resetColors() {
     document.getElementById('answer_1').parentNode.classList.remove('right');
     document.getElementById('answer_1').parentNode.classList.remove('wrong');
@@ -60,6 +58,17 @@ function resetColors() {
     document.getElementById('answer_3').parentNode.classList.remove('wrong');
     document.getElementById('answer_4').parentNode.classList.remove('right');
     document.getElementById('answer_4').parentNode.classList.remove('wrong');
+}
+
+function updateToNextQuestion() {
+    let question = questions[currentQuestion];
+
+    document.getElementById('position').innerHTML = currentQuestion + 1;
+    document.getElementById('question-text').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
 }
 
 function showEndScreen() {
