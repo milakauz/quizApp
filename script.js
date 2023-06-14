@@ -6,11 +6,20 @@ function init() {
 function showQuestion() {
 
     if (currentQuestion >= questions.length) {
-        // TODO: show end screen
+        // show end screen
         showEndScreen();
     } else {
+        // show questions
+
+        let percent = currentQuestion / questions.length;
+        percent = Math.round(percent * 100);
+
+        document.getElementById('progress-bar').innerHTML = `${percent}%`;
+        document.getElementById('progress-bar').style = `width: ${percent}%;`;
+
         let question = questions[currentQuestion];
 
+        document.getElementById('position').innerHTML = currentQuestion + 1;
         document.getElementById('question-text').innerHTML = question['question'];
         document.getElementById('answer_1').innerHTML = question['answer_1'];
         document.getElementById('answer_2').innerHTML = question['answer_2'];
@@ -26,6 +35,7 @@ function answer(selection) {
     if (selectedAnswerNumber == question['right_answer']) {    // abgleich mit der richtigen antwort, die auch nur eine zahl ist (daher slice-1)
         console.log('richtig!');
         document.getElementById(selection).parentNode.classList.add('right');
+        rightQuestions++;
     } else {
         console.log('falsch!');
         document.getElementById(selection).parentNode.classList.add('wrong');
@@ -39,7 +49,6 @@ function nextQuestion() {
     document.getElementById('next-btn').disabled = true;
     resetColors();
     showQuestion();
-    calculateCurrentQuestionNumer(currentQuestion);
 }
 
 function resetColors() {
@@ -53,15 +62,21 @@ function resetColors() {
     document.getElementById('answer_4').parentNode.classList.remove('wrong');
 }
 
-function calculateCurrentQuestionNumer(x) {
-    let currentQuestion = x + 1;
-    document.getElementById('position').innerHTML = /*css*/`
-        ${currentQuestion}
-    `
-}
-
 function showEndScreen() {
     document.getElementById('endscreen').style = '';
+    document.getElementById('header-picture').src = './img/brain result.png'
     document.getElementById('question-body').style = 'display: none';
-    document.getElementById('riddle-picture').style = 'display: none';
+    document.getElementById('amount-of-questions').innerHTML = questions.length;
+    document.getElementById('amount-of-right-questions').innerHTML = rightQuestions;
+    document.getElementById('progress-bar').innerHTML = `100 % `;
+    document.getElementById('progress-bar').style.width = `100%`;
+}
+
+function resetGame() {
+    document.getElementById('header-picture').src = './img/quizimage.jpg';
+    document.getElementById('endscreen').style = 'display: none';
+    document.getElementById('question-body').style = '';
+    currentQuestion = 0; // wert auf 0 setzen
+    rightQuestions = 0;
+    init();
 }
