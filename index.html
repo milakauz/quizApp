@@ -26,7 +26,9 @@
     <div class="card quiz-card">
       <img src="./img/quizimage.jpg" class="card-img-top" alt="riddle">
 
-      <div class="card-body">
+      <div class="card-body" id="endscreen" style="display: none">quiz beendet</div>
+
+      <div class="card-body" id="question-body">
         <h5 class="card-title" id="question-text">Frage</h5>
 
         <div class="card quiz-answer mb-2" onclick="answer('answer_1')">
@@ -55,10 +57,11 @@
 
         <div class="question-footer">
           <span>
-            <b>1</b> von <b id="all-questions">5</b> Fragen
+            <b id="position">1</b> von <b id="all-questions">5</b> Fragen
           </span>
 
-          <button type="button" class="btn btn-secondary">weiter!</button>
+          <button type="button" id="next-btn" disabled class="btn btn-secondary"
+            onclick="nextQuestion()">weiter!</button>
         </div>
 
       </div>
