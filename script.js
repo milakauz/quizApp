@@ -35,7 +35,7 @@ function answer(selection) {
 }
 
 function nextQuestion() {
-    currentQuestion++; //zum bsp von 0 auf 1
+    currentQuestion++;                                      //zum bsp von 0 auf 1
     document.getElementById('next-btn').disabled = true;
     resetColors();
     showQuestion();
@@ -63,4 +63,5 @@ function calculateCurrentQuestionNumer(x) {
 function showEndScreen() {
     document.getElementById('endscreen').style = '';
     document.getElementById('question-body').style = 'display: none';
+    document.getElementById('riddle-picture').style = 'display: none';
 }
