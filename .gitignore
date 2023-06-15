@@ -4,3 +4,6 @@ package.json
 Quizapp Blue.zip
 Quizapp Dark.zip
 .gitignore
+.audio
+.font.css
+./fonts
