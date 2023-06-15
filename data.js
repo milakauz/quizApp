@@ -4,13 +4,13 @@ let questions = [
         'answer_1' : 'call myFunction();',
         'answer_2' : 'myFunction();',
         'answer_3' : 'execute myFunction();',
-        'answer_4' : 'runFunction(myFunction);',
+        'answer_4' : 'myFunction run;',
         'right_answer' : 2
     }, 
     {
         'question' : 'Welche der folgenden Methoden wird verwendet, um den Inhalt eines HTML-Elements mit JavaScript zu ändern?',
         'answer_1' : 'innerHTML()',
-        'answer_2' : 'innerText()',
+        'answer_2' : 'inner()',
         'answer_3' : 'textContent()',
         'answer_4' : 'setHTML()',
         'right_answer' : 1
@@ -24,7 +24,7 @@ let questions = [
         'right_answer' : 4
     }, 
     {
-        'question' : 'Welche CSS-Eigenschaft wird verwendet, um den Abstand zwischen den Buchstaben in einem Text anzupassen?',
+        'question' : 'Welche CSS-Eigenschaft wird verwendet, um den horizontalen Abstand zwischen den Buchstaben in einem Text anzupassen?',
         'answer_1' : 'word-spacing',
         'answer_2' : 'letter-spacing',
         'answer_3' : 'line-height',
@@ -51,5 +51,6 @@ let questions = [
 
 let currentQuestion = 0;
 let rightQuestions = 0;
+let isAnswerSelected = false;
 let AUDIO_SUCCESS = new Audio('audio/success.mp3');
 let AUDIO_FAIL = new Audio('audio/fail.mp3');
