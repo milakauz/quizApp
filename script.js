@@ -73,7 +73,7 @@ function updateToNextQuestion() {
 
 function showEndScreen() {
     document.getElementById('endscreen').style = '';
-    document.getElementById('header-picture').src = './img/brain result.png'
+    styleEndscreenPicture();
     document.getElementById('question-body').style = 'display: none';
     document.getElementById('amount-of-questions').innerHTML = questions.length;
     document.getElementById('amount-of-right-questions').innerHTML = rightQuestions;
@@ -82,10 +82,30 @@ function showEndScreen() {
 }
 
 function resetGame() {
-    document.getElementById('header-picture').src = './img/quizimage.jpg';
+    let headerPicture = document.getElementById('header-picture');
+    headerPicture.src = './img/quizimage.jpg';
+    headerPicture.classList.remove('endscreen-picture');
+    resetContainerSize();
     document.getElementById('endscreen').style = 'display: none';
     document.getElementById('question-body').style = '';
     currentQuestion = 0; // wert auf 0 setzen
     rightQuestions = 0;
     init();
+}
+
+function styleEndscreenPicture() {
+    let container = document.querySelector('.card.quiz-card');
+    document.getElementById('header-picture').src = './img/brain result.png';
+    let pic = container.querySelector('img');
+
+    pic.classList.add('endscreen-picture');
+
+    // container.style.width = container.offsetWidth + 'px';  // setzt container auf ursprüngliche größe
+    // container.style.height = container.offsetHeight + 'px';
+}
+
+function resetContainerSize() {
+    let container = document.querySelector('.card.quiz-card');
+    container.style.width = '';
+    container.style.height = '';
 }

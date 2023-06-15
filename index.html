@@ -10,15 +10,16 @@
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="fonts.css">
   <script src="data.js"></script>
   <script src="script.js"></script>
-  <title>quiz</title>
+  <title>QUIZAPP</title>
 </head>
 
 <body onload="init()">
   <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">QuizApp</span>
+      <span class="navbar-brand mb-0 h1">QUIZAPP</span>
     </div>
   </nav>
   <div class="container">
@@ -31,18 +32,26 @@
       </div>
 
       <div class="card-body" id="endscreen" style="display: none">
-        <div>quiz beendet
+        <!-- <div>quiz beendet
+        </div> -->
+        <div id="endscreen-headline" class="endscreen-headline">
+          complete quiz
         </div>
 
 
-        <div class="text-center"> Du hast <b id="amount-of-right-questions">xxx</b> Fragen von <b
-            id="amount-of-questions">UIUI</b> richtig
-          beantwortet!
+        <div class="text-center"> 
+          <b class="bold">your score</b>
+          <b id="amount-of-right-questions">xxx</b>
+          <b>/</b>
+          <b id="amount-of-questions">UIUI</b> 
         </div>
-
 
         <div class="button-row">
-          <button type="button" class="btn btn-secondary" onclick="resetGame()">Erneut spielen!</button>
+          <button type="button" class="btn btn-secondary btn-share">SHARE</button>
+        </div>
+
+        <div class="button-row">
+          <span class="btn-reset" onclick="resetGame()">replay</span>
         </div>
 
       </div>
