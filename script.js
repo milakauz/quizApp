@@ -22,19 +22,25 @@ function answer(selection) {
     let selectedAnswerNumber = selection.slice(-1);             //um den letzten buchstaben der answer_ zu bekommen
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
-    if (selectedAnswerNumber == question['right_answer']) {    // abgleich mit der richtigen antwort, die auch nur eine zahl ist (daher slice-1)
-        document.getElementById(selection).parentNode.classList.add('right');
-        AUDIO_SUCCESS.play();
-        rightQuestions++;
+    if (isAnswerSelected) {                                     // damit keine weiteren antwortmöglichkeiten angeklickt werden können
+        return;
     } else {
-        document.getElementById(selection).parentNode.classList.add('wrong');
-        document.getElementById(idOfRightAnswer).parentNode.classList.add('right');
-        AUDIO_FAIL.play();
+        if (selectedAnswerNumber == question['right_answer']) {    // abgleich mit der richtigen antwort, die auch nur eine zahl ist (daher slice-1)
+            document.getElementById(selection).parentNode.classList.add('right');
+            AUDIO_SUCCESS.play();
+            rightQuestions++;
+        } else {
+            document.getElementById(selection).parentNode.classList.add('wrong');
+            document.getElementById(idOfRightAnswer).parentNode.classList.add('right');
+            AUDIO_FAIL.play();
+        }
+        isAnswerSelected = true;
+        document.getElementById('next-btn').disabled = false;
     }
-    document.getElementById('next-btn').disabled = false;
 }
 
 function nextQuestion() {
+    isAnswerSelected = false;
     currentQuestion++;                                      //zum bsp von 0 auf 1
     document.getElementById('next-btn').disabled = true;
     resetColors();
