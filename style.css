@@ -1,6 +1,7 @@
 body {
     background-color: rgba(39, 52, 92);
     font-family: 'Rubik', sans-serif;
+    overflow: hidden;
 }
 
 h5 {
@@ -41,7 +42,7 @@ h5 {
 
 .quiz-answer:hover {
     cursor: pointer;
-    background-color: rgba(39, 52, 92, 0.1);
+    /* background-color: rgba(39, 52, 92, 0.1); */
 }
 
 .right {
@@ -99,3 +100,9 @@ button:hover {
 .btn-reset:hover{
     cursor: pointer;
 }
+
+@media only screen and (max-width: 500px) {
+    .container {
+      min-height: 70vh;
+    }
+  }
