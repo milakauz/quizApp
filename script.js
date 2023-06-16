@@ -4,7 +4,6 @@ function init() {
 }
 
 function showQuestion() {
-
     if (gameIsOver()) {
         showEndScreen();
     } else {
@@ -18,26 +17,27 @@ function gameIsOver() {
 }
 
 function answer(selection) {
-    let question = questions[currentQuestion];              	//um auf aktuelle frage zuzugreifen
-    let selectedAnswerNumber = selection.slice(-1);             //um den letzten buchstaben der answer_ zu bekommen
+    if (isAnswerSelected) return;
+    checkAnswer(selection);
+    isAnswerSelected = true;
+    document.getElementById('next-btn').disabled = false;
+  }
+
+  function checkAnswer(a) {
+    let question = questions[currentQuestion];
+    let selectedAnswerNumber = a.slice(-1);
     let idOfRightAnswer = `answer_${question['right_answer']}`;
 
-    if (isAnswerSelected) {                                     // damit keine weiteren antwortmöglichkeiten angeklickt werden können
-        return;
-    } else {
-        if (selectedAnswerNumber == question['right_answer']) {    // abgleich mit der richtigen antwort, die auch nur eine zahl ist (daher slice-1)
-            document.getElementById(selection).parentNode.classList.add('right');
-            AUDIO_SUCCESS.play();
-            rightQuestions++;
-        } else {
-            document.getElementById(selection).parentNode.classList.add('wrong');
-            document.getElementById(idOfRightAnswer).parentNode.classList.add('right');
-            AUDIO_FAIL.play();
-        }
-        isAnswerSelected = true;
-        document.getElementById('next-btn').disabled = false;
-    }
-}
+    if (selectedAnswerNumber == question['right_answer']) {
+        document.getElementById(a).parentNode.classList.add('right');
+        AUDIO_SUCCESS.play();
+        rightQuestions++;
+      } else {
+        document.getElementById(a).parentNode.classList.add('wrong');
+        document.getElementById(idOfRightAnswer).parentNode.classList.add('right');
+        AUDIO_FAIL.play();
+      }
+  }
 
 function nextQuestion() {
     isAnswerSelected = false;
@@ -105,9 +105,6 @@ function styleEndscreenPicture() {
     let pic = container.querySelector('img');
 
     pic.classList.add('endscreen-picture');
-
-    // container.style.width = container.offsetWidth + 'px';  // setzt container auf ursprüngliche größe
-    // container.style.height = container.offsetHeight + 'px';
 }
 
 function resetContainerSize() {
